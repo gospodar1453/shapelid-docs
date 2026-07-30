@@ -1,7 +1,13 @@
 ---
-title: "POST /nest"
+title: "POST /nest — Batch Nesting for SLS and MJF Builds"
 sidebarTitle: "POST /nest"
 description: "Submit multiple parts for batch nesting optimisation and get consolidated SLS or MJF build pricing with material savings and utilisation metrics."
+---
+
+The `/nest` endpoint is designed for customers building batch ordering integrations with powder-bed fusion technologies. Submit a set of STL files along with a technology and material, and the API packs the parts into one or more builds, calculates how much of the build volume is used, and returns consolidated pricing with per-part unit costs. Nesting typically reduces material waste and machine time compared to pricing each part individually.
+
+This endpoint supports `sls` and `mjf` technologies only. For all other technologies, price parts individually using `POST /analyze`.
+
 ---
 
 ## Request
@@ -15,22 +21,69 @@ curl -X POST https://shapelid-kernel-production.up.railway.app/nest \
   -F "quantity=10"
 ```
 
+### Parameters
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `files` | file[] | Yes | One or more CAD files to nest together. Repeat the `files` field for each part. Accepted format: STL. Maximum total upload size: 50 MB. |
+| `technology` | string | Yes | Powder-bed fusion technology. Must be `sls` or `mjf`. |
+| `material` | string | Yes | Material key for the chosen technology (e.g., `sls_pa12`, `mjf_pa12_black`). Use `GET /options` to retrieve valid keys. |
+| `quantity` | integer | No | Total number of parts across all uploaded files. Defaults to `1` per file. |
+
+---
+
 ## Response
+
+A successful response contains build-level utilisation metrics and a consolidated pricing breakdown:
 
 ```json
 {
   "technology": "sls",
-  "build_volume_used_pct": 68.5,
-  "material_savings_pct": 22.0,
+  "material": "sls_pa12",
   "total_parts_fit": 10,
   "builds_required": 1,
+  "build_volume_used_pct": 68.5,
+  "material_savings_pct": 22.0,
   "breakdown": {
     "material_cost": 15.30,
     "machine_cost": 28.00,
     "setup_cost": 5.00,
-    "overhead": 4.20
+    "overhead": 4.20,
+    "subtotal": 52.50
   },
+  "unit_price": 7.26,
   "total_price": 72.64,
-  "unit_price": 7.26
+  "currency": "USD"
 }
 ```
+
+### Response Fields
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `technology` | string | The technology used for nesting and pricing. |
+| `material` | string | The material key used for pricing. |
+| `total_parts_fit` | integer | Total number of parts that fit in the nested build(s). |
+| `builds_required` | integer | Number of separate build runs required to produce all parts. |
+| `build_volume_used_pct` | number | Percentage of total available build volume occupied by the nested parts. |
+| `material_savings_pct` | number | Estimated material cost saving compared to pricing each part in its own build. |
+| `breakdown.material_cost` | number | Total material cost across all builds in `currency`. |
+| `breakdown.machine_cost` | number | Total machine time cost in `currency`. |
+| `breakdown.setup_cost` | number | Per-build setup fee in `currency`. |
+| `breakdown.overhead` | number | Overhead contribution in `currency`. |
+| `breakdown.subtotal` | number | Sum of all breakdown components. |
+| `unit_price` | number | Average price per part (`total_price ÷ total_parts_fit`) in `currency`. |
+| `total_price` | number | Total cost for the entire batch in `currency`. |
+| `currency` | string | ISO 4217 currency code for all monetary values (e.g., `"USD"`). |
+
+---
+
+## When to Use Nesting
+
+Nesting is most cost-effective when:
+
+- You are ordering **10 or more identical or similar parts** in a single batch.
+- Your parts are **relatively small** and multiple pieces can pack efficiently into one build volume.
+- You want a **single invoice** for a mixed batch of different part geometries in the same material.
+
+If `builds_required` returns a value greater than `1`, consider adjusting quantities or splitting your order across separate `/nest` calls to balance build utilisation.

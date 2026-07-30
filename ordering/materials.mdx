@@ -107,16 +107,7 @@ When you need something beyond the defaults — an exotic alloy, a specialist ph
 
 ## Live Market-Based Pricing
 
-Material prices on Shapelid are not fixed catalogue rates — they are computed dynamically every day from four real-time data sources:
-
-| Data Source | Commodities Covered |
-|---|---|
-| **metals.dev API** | Aluminium (Al), Copper (Cu), Nickel (Ni), Zinc (Zn) spot prices in USD/kg |
-| **Yahoo Finance — HRC=F** | Hot-Rolled Coil steel futures; applies to mild steel, SS304/316 sheet |
-| **Yahoo Finance — BZ=F** | Brent crude oil; used as proxy for polymer/plastic resin feedstock costs |
-| **TCMB (Central Bank of Turkey)** | USD/TRY exchange rate for Turkish Lira conversion |
-
-Each morning, Shapelid's pricing engine fetches the latest values from these sources, computes a per-material cost rate in TRY/cm³ (with currency conversion applied), and updates the instant quoting calculator. Because markets can move between the time you view a quote and the time you check out, the final price is locked at the moment of order confirmation.
+Material prices on Shapelid are not fixed catalogue rates — they are updated daily from live commodity market rates covering metals, alloys, and polymer feedstocks. Each morning the pricing engine pulls the latest market data and refreshes the instant quoting calculator, so the price you see always reflects current raw material costs rather than a static estimate. Because markets can move between the time you view a quote and the time you check out, the final price is locked at the moment of order confirmation.
 
 <Note>
   Prices shown at checkout reflect the real-time market rate at the moment you confirm your order. Quotes generated earlier in the same session may differ slightly if commodity prices moved during your browsing session. The locked order price will always be displayed clearly before you enter payment.

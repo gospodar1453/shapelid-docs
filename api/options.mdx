@@ -1,7 +1,11 @@
 ---
-title: "GET /options"
+title: "GET /options — List Valid Materials and Configuration"
 sidebarTitle: "GET /options"
 description: "Retrieve valid materials, finishes, resolutions, tolerances, and certifications for any Shapelid manufacturing technology before calling /analyze."
+---
+
+The `/options` endpoint returns all valid parameter values for a given manufacturing technology. Call it before `POST /analyze` to confirm which material keys, finish types, resolutions, tolerances, and certifications you can pass. Options vary by technology — for example, metal processes expose different tolerance grades than FDM, and some technologies do not support color selection at all.
+
 ---
 
 ## Request
@@ -10,12 +14,30 @@ description: "Retrieve valid materials, finishes, resolutions, tolerances, and c
 curl https://shapelid-kernel-production.up.railway.app/options?technology=fdm
 ```
 
+### Parameters
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `technology` | string | Yes | The manufacturing technology to query. One of: `fdm`, `sla`, `sls`, `mjf`, `dmls`, `polyjet`, `cnc_turning`, `cnc_milling`, `edm`, `laser_cutting`, `bending`. |
+
+---
+
 ## Response
+
+The response lists every valid value you can pass to `/analyze` for the requested technology:
 
 ```json
 {
   "technology": "fdm",
-  "materials": ["fdm_pla", "fdm_abs", "fdm_petg", "fdm_tpu_soft", ...],
+  "materials": [
+    "fdm_pla",
+    "fdm_abs",
+    "fdm_petg",
+    "fdm_tpu_soft",
+    "fdm_tpu_hard",
+    "fdm_asa",
+    "fdm_nylon"
+  ],
   "finishes": ["as_printed", "vapor_smoothing", "sanding", "priming"],
   "colors": ["white", "black", "red", "blue", "green", "yellow", "gray"],
   "resolutions": ["draft", "standard", "fine"],
@@ -24,4 +46,26 @@ curl https://shapelid-kernel-production.up.railway.app/options?technology=fdm
 }
 ```
 
-Options are technology-dependent. For example, DMLS supports `fine` and `ultra` tolerances but not `draft` resolution.
+### Response Fields
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `technology` | string | The technology that was queried. |
+| `materials` | array of strings | All valid material keys for this technology. Pass one of these as the `material` parameter in `/analyze`. |
+| `finishes` | array of strings | Valid surface finish options. |
+| `colors` | array of strings | Valid color options. Empty array if the technology does not support color selection. |
+| `resolutions` | array of strings | Valid resolution or layer-height options. |
+| `tolerances` | array of strings | Valid tolerance grades. |
+| `certifications` | array of strings | Supported certification requirements. |
+
+---
+
+## Technology-Specific Differences
+
+Options differ meaningfully across technologies. A few examples:
+
+- **DMLS** supports `fine` and `ultra` tolerances but does not offer `draft` resolution.
+- **Laser Cutting** and **Bending** return an empty `colors` array and a minimal `finishes` list.
+- **CNC Milling** and **CNC Turning** expose additional tolerance grades not present in additive processes.
+
+Always query `/options` for each technology you intend to use rather than hard-coding option values.

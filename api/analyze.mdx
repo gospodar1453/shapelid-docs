@@ -1,7 +1,11 @@
 ---
-title: "POST /analyze"
+title: "POST /analyze — CAD Pricing and Geometry Analysis"
 sidebarTitle: "POST /analyze"
 description: "Upload a CAD file and receive an instant, itemised pricing breakdown covering material cost, machine time, setup fees, and overhead."
+---
+
+The `/analyze` endpoint is the core of the Shapelid Kernel API. Send a CAD file along with your chosen technology and material, and the API returns a complete pricing breakdown with geometric measurements — instantly and without any manual steps. Use `GET /options` first to confirm which material keys and finish options are valid for your chosen technology.
+
 ---
 
 ## Request
@@ -17,22 +21,24 @@ curl -X POST https://shapelid-kernel-production.up.railway.app/analyze \
 
 ### Parameters
 
-<Table>
-  | Parameter | Type | Required | Description |
-  |-----------|------|----------|-------------|
-  | file | file | Yes | CAD file (STL, OBJ, GLTF, STEP, IGES, DXF) |
-  | technology | string | Yes | One of: fdm, sla, sls, mjf, dmls, polyjet, cnc_turning, cnc_milling, edm, laser_cutting, bending |
-  | material | string | Yes | Material key (e.g., fdm_pla, sla_standard_resin) |
-  | quantity | int | No | Number of parts (default: 1) |
-  | mode | string | No | "simple" or "advanced" |
-  | finish | string | No | Finish option |
-  | color | string | No | Color option |
-  | resolution | string | No | Resolution/layer height |
-  | tolerance | string | No | Tolerance grade |
-  | certification | string | No | Certification requirement |
-</Table>
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `file` | file | Yes | CAD file to analyse. Accepted formats: STL, OBJ, GLTF, STEP, IGES, DXF. Maximum size: 50 MB. |
+| `technology` | string | Yes | Manufacturing technology. One of: `fdm`, `sla`, `sls`, `mjf`, `dmls`, `polyjet`, `cnc_turning`, `cnc_milling`, `edm`, `laser_cutting`, `bending`. |
+| `material` | string | Yes | Material key for the chosen technology (e.g., `fdm_pla`, `sla_standard_resin`). Use `GET /options` to retrieve valid keys. |
+| `quantity` | integer | No | Number of identical parts to price. Defaults to `1`. |
+| `mode` | string | No | `simple` returns a standard breakdown; `advanced` includes additional geometry detail. Defaults to `simple`. |
+| `finish` | string | No | Surface finish option (e.g., `as_printed`, `vapor_smoothing`). Must be valid for the chosen technology. |
+| `color` | string | No | Color option (e.g., `white`, `black`). Only applicable to technologies that support color selection. |
+| `resolution` | string | No | Print resolution or layer height (e.g., `standard`, `fine`). Must be valid for the chosen technology. |
+| `tolerance` | string | No | Tolerance grade (e.g., `standard`, `medium`, `fine`). Primarily relevant for CNC processes. |
+| `certification` | string | No | Certification requirement (e.g., `iso9001`). If required, the part may be flagged for manual review. |
+
+---
 
 ## Response
+
+A successful response contains full geometric analysis and an itemised cost breakdown:
 
 ```json
 {
@@ -56,15 +62,51 @@ curl -X POST https://shapelid-kernel-production.up.railway.app/analyze \
 }
 ```
 
-### Manual Quote Response
+### Response Fields
 
-When a trigger fires, the response includes:
+| Field | Type | Description |
+|-------|------|-------------|
+| `technology` | string | The manufacturing technology used for pricing. |
+| `material` | string | The material key used for pricing. |
+| `quantity` | integer | Number of parts priced. |
+| `volume_cm3` | number | Calculated part volume in cubic centimetres. |
+| `surface_area_cm2` | number | Calculated surface area in square centimetres. |
+| `print_time_min` | integer | Estimated production time in minutes. |
+| `breakdown.material_cost` | number | Cost of raw material in `currency`. |
+| `breakdown.machine_cost` | number | Machine time cost in `currency`. |
+| `breakdown.setup_cost` | number | Per-order setup fee in `currency`. |
+| `breakdown.overhead` | number | Overhead contribution in `currency`. |
+| `breakdown.subtotal` | number | Sum of all breakdown components. |
+| `unit_price` | number | Final price per part in `currency`, including all fees. |
+| `total_price` | number | Total order price (`unit_price × quantity`) in `currency`. |
+| `manual_quote` | boolean | `true` if the part requires human review before a firm price can be issued. |
+| `currency` | string | ISO 4217 currency code for all monetary values (e.g., `"USD"`). |
+
+---
+
+## Manual Quote Response
+
+Some parts cannot be priced automatically. When the API detects conditions such as high quantity, excessive overhangs, thin walls, complex internal channels, a volume that exceeds the build envelope, or a certification requirement, it returns `manual_quote: true` along with a `quote_triggers` array explaining the reasons:
 
 ```json
 {
+  "technology": "fdm",
+  "material": "fdm_tpu_soft",
+  "quantity": 500,
   "manual_quote": true,
   "quote_triggers": ["high_quantity", "overhang_ratio"],
   "quote_warnings": ["Quantity exceeds auto-pricing threshold for FDM+TPU"],
-  "breakdown": { ... }
+  "breakdown": {
+    "material_cost": null,
+    "machine_cost": null,
+    "setup_cost": null,
+    "overhead": null,
+    "subtotal": null
+  },
+  "unit_price": null,
+  "total_price": null,
+  "currency": "USD"
 }
 ```
+
+When `manual_quote` is `true`, contact [destek@shapelid.com](mailto:destek@shapelid.com) or submit through the Shapelid client portal to receive a firm quote.

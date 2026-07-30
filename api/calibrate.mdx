@@ -1,45 +1,9 @@
 ---
-title: "POST /calibrate"
+title: "POST /calibrate — Authorized Integration Partners Only"
 sidebarTitle: "POST /calibrate"
-description: "Submit actual vs. predicted production costs to tune the Shapelid pricing engine using exponential smoothing for a specific technology-material pair."
+description: "The /calibrate endpoint is an internal pricing tool available only to authorized Shapelid integration partners. It is not part of the public API."
 ---
 
-## Overview
+The `/calibrate` endpoint is **not available for general public use**. It is an internal tool used by authorized Shapelid integration partners to help maintain pricing accuracy for specific production environments.
 
-The calibration system uses exponential smoothing (α=0.3) to adjust pricing factors based on actual production costs vs predicted costs.
-
-## Request
-
-```bash
-curl -X POST https://shapelid-kernel-production.up.railway.app/calibrate \
-  -H "Content-Type: application/json" \
-  -d '{
-    "technology": "fdm",
-    "material": "fdm_pla",
-    "predicted_unit_price": 6.32,
-    "actual_unit_price": 7.10,
-    "quantity": 1
-  }'
-```
-
-## Response
-
-```json
-{
-  "calibration_factor": {
-    "tech_material_key": "fdm_pla",
-    "material_cost_adjust": 1.08,
-    "machine_cost_adjust": 1.05,
-    "setup_cost_adjust": 1.0,
-    "margin_adjust": 1.0,
-    "confidence_score": 45,
-    "sample_count": 1
-  },
-  "deviation_pct": 12.3,
-  "deviation_direction": "underpriced"
-}
-```
-
-## Calibration Factors
-
-Factors are clamped to [0.5, 2.0] and require a minimum of 3 calibration records before activation. The weekly automation runs every Monday at 02:00 (Istanbul time).
+If you believe your organization qualifies for access, contact [destek@shapelid.com](mailto:destek@shapelid.com) with a description of your integration and use case. Unauthorized requests to this endpoint will be rejected.
