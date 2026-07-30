@@ -1,0 +1,88 @@
+---
+title: "Managing Production and Quality Control on Shapelid"
+sidebarTitle: "Production Management"
+description: "Use the Shapelid Partner Portal's Kanban board to track production stages, upload QC photos, and complete inspection reports for each job."
+---
+
+Once you accept a job, the Partner Portal gives you a structured workflow to track it from raw material through to customer delivery. The Production Kanban board keeps every active order visible at a glance and tells you — and Shapelid — exactly where each part is in your shop. Keeping the board up to date is not just good practice; it directly affects customer satisfaction scores and your standing on the platform.
+
+## The Production Kanban Board
+
+Navigate to **Production** in the left sidebar to open your Kanban board. Each column represents a production stage, and every active job appears as a card you move forward as work progresses. Cards display the job ID, technology, part name, quantity, customer deadline, and a colour-coded urgency indicator.
+
+You can view the board in **Card View** (default) or switch to **List View** if you prefer a tabular layout. Both views support sorting by deadline, job value, or date accepted.
+
+## Stage Progression
+
+<Steps>
+  <Step title="Assigned">
+    The job has been accepted and is waiting for you to begin. Confirm you have reviewed the full specification and are ready to source material. Move the card forward once material is confirmed or already in stock.
+  </Step>
+  <Step title="Material Ordered">
+    You have ordered or confirmed availability of all required materials. If material is already in stock, you can advance through this stage immediately. Shapelid may prompt you to log the material batch or supplier for traceability on certain order types.
+  </Step>
+  <Step title="In Production">
+    Parts are actively being printed or machined. Update the card with your estimated completion date if it differs from the default. You can attach progress photos at any point during this stage — customers appreciate visibility into active production.
+  </Step>
+  <Step title="Post-Processing">
+    Production is complete and parts are undergoing secondary operations: support removal, sanding, painting, anodising, heat treatment, or any other finishing specified in the order. Log each post-process step as you complete it.
+  </Step>
+  <Step title="Quality Control">
+    Parts are ready for inspection. Complete the digital QC checklist, enter all required measurements, and upload inspection report photos before advancing. This stage cannot be skipped or completed without all checklist items confirmed. See [Quality Control](#quality-control) below for full details.
+  </Step>
+  <Step title="Ready to Ship">
+    QC is passed and the job is cleared for collection. Moving a job to this stage automatically triggers Geliver label generation and schedules a courier pickup from your facility. See [Marking an Order Ready to Ship](#marking-an-order-ready-to-ship) below.
+  </Step>
+</Steps>
+
+To move a card forward, open it and click **Advance to [Next Stage]**, or drag the card to the next column in Card View. Each transition is timestamped and logged in the job's activity history.
+
+## Quality Control
+
+The QC stage is the most important gate in the Shapelid workflow. Every job requires a completed inspection before it ships, and the records you submit become part of the customer-facing order documentation.
+
+### Digital Checklists
+
+When you move a job into the **Quality Control** stage, a checklist automatically loads based on the job's technology and specifications. Common checklist items include:
+
+- Visual inspection (no warping, delamination, surface defects, or tool marks)
+- Dimensional verification of key features against the drawing
+- Surface finish check against the specified Ra value
+- Colour and appearance match (where applicable)
+- Quantity count — confirm all parts are present
+
+Check each item as you verify it. Any item you mark as **Failed** opens a notes field where you describe the issue. You can either resolve the issue and re-check the item, or escalate the job to Shapelid support if a defect cannot be corrected.
+
+### Entering Measurements
+
+For jobs with tight tolerances, the checklist includes a measurements table. Enter your actual measured values for each critical dimension. The portal compares your readings against the tolerance range from the customer's specification and flags any out-of-tolerance results in red.
+
+Use calibrated instruments — digital callipers, micrometres, CMM output, or profilometers as appropriate — and record the values directly from the instrument. Do not estimate.
+
+### Uploading Inspection Report Photos
+
+Upload at least three photos as part of every QC submission:
+
+1. **Overview shot** — all parts laid out together, clearly showing quantity
+2. **Detail shot** — close-up of the most critical feature or surface
+3. **Measurement shot** — calliper or instrument shown against a representative part
+
+Drag and drop images directly onto the QC photo upload panel, or click **Upload Photos** to browse. Supported formats are JPEG and PNG. Each image should be well-lit and in focus — blurry or dark photos may be flagged by the Shapelid QC review team.
+
+<Warning>
+  Do not mark QC as complete until all parts have physically passed inspection. Once you advance a job to **Ready to Ship**, the customer is notified that their order has cleared quality control. Shipping parts that later fail inspection results in a return, a dispute, and a negative impact on your reliability score. Take the time to inspect thoroughly.
+</Warning>
+
+## Marking an Order Ready to Ship
+
+When all checklist items are confirmed and photos are uploaded, click **Complete QC and Prepare Shipment**. The portal will:
+
+1. Lock the QC record and make it visible to the customer
+2. Generate a Geliver cargo label — download it from the **Shipment** tab on the job card
+3. Schedule a Geliver courier pickup from your registered facility address (you will receive a confirmation with the pickup window)
+
+Print the Geliver label and affix it securely to the outside of the package. Pack parts carefully using appropriate cushioning for the material type. Once the courier collects the package, scan the confirmation code in the portal to mark the job as **Collected**.
+
+<Tip>
+  Uploading progress photos during the **In Production** and **Post-Processing** stages — not just at QC — builds customer confidence and significantly reduces inbound queries about order status. Jobs with at least two mid-production photo updates receive higher customer satisfaction ratings on average.
+</Tip>

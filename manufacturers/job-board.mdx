@@ -1,0 +1,93 @@
+---
+title: "Finding and Accepting Jobs on the Shapelid Job Board"
+sidebarTitle: "Job Board"
+description: "Browse incoming manufacturing requests on the Shapelid Partner Portal, review part files and requirements, and accept jobs that match your capabilities."
+---
+
+The Job Board is your live feed of incoming manufacturing requests from Shapelid customers. Every card on the board represents a real order — a customer has submitted part files, specified their requirements, and is waiting for a qualified manufacturer to take the job. This page explains how to read a job listing, use filters to find the right work, and move an RFQ into your active production queue.
+
+## Overview of the Job Board
+
+Navigate to **Job Board** in the left sidebar of the Partner Portal. The board displays all open RFQs that Shapelid's matching engine has determined are compatible with your registered capabilities and available capacity. Jobs are sorted by posting time by default, with the newest at the top.
+
+Each job card shows:
+
+- **Technology** — 3D printing (with process subtype) or CNC machining
+- **Material** — the customer's requested material or material category
+- **Quantity** — number of parts in the order
+- **Deadline** — the customer's requested delivery date
+- **Estimated value** — your net payout range after Shapelid commission
+- **Expiry timer** — how long before the job leaves your board
+
+<Note>
+  Every RFQ has an expiry window — typically 4 to 24 hours depending on order urgency. If no manufacturer accepts the job before it expires, Shapelid re-broadcasts it to a wider pool. Act promptly on jobs that match your capabilities, especially those marked **Urgent**.
+</Note>
+
+## Filtering the Job Board
+
+Use the filter bar at the top of the Job Board to narrow down listings to what matters most for your shop.
+
+<CardGroup cols={2}>
+  <Card title="Technology" icon="printer">
+    Filter by manufacturing process: FDM, SLA, SLS, MJF, Metal 3D Printing, 3-Axis CNC, 4-Axis CNC, 5-Axis CNC, or CNC Turning.
+  </Card>
+  <Card title="Material" icon="cube">
+    Filter by material family (e.g. PLA, PETG, Nylon, Aluminium, Stainless Steel) or leave open to see all compatible materials.
+  </Card>
+  <Card title="Quantity" icon="list-ol">
+    Set a minimum and maximum part count to focus on batch sizes that suit your production setup.
+  </Card>
+  <Card title="Delivery Deadline" icon="calendar">
+    Filter to only show jobs you can realistically complete within your current schedule.
+  </Card>
+</CardGroup>
+
+Your filter preferences are saved per session. You can also save named filter presets under **Job Board → Saved Filters** so you can switch quickly between, for example, a "Large CNC Batches" view and a "Quick-Turn FDM" view.
+
+## Reviewing an RFQ
+
+Click any job card to open the full RFQ detail view. This page gives you everything you need to make an informed accept/reject decision.
+
+### 3D Part Viewer
+
+The interactive 3D viewer lets you inspect the customer's part file from every angle. Use scroll to zoom, click and drag to rotate, and right-click to pan. Key dimensions are annotated directly on the model. For CNC jobs, critical tolerances and surface finish callouts are highlighted in red.
+
+### Specifications
+
+The specifications panel lists:
+
+- **Material** — exact grade if specified by the customer
+- **Colour / finish** — RAL code, anodising spec, or surface roughness (Ra) target
+- **Tolerances** — general and critical tolerances
+- **Quantity and delivery** — number of parts and required delivery date
+- **Special requirements** — certifications, packaging instructions, or customer notes
+
+### Customer Requirements
+
+This section contains free-text notes added by the customer. Read it carefully — it often includes context about end-use, assembly constraints, or quality preferences that are not captured in the structured spec fields.
+
+## Accepting or Rejecting a Job
+
+Once you have reviewed the RFQ and confirmed you can meet the requirements, click **Accept Job**.
+
+- **Accepting** locks the job to your account immediately. The customer is notified that their order is in production, and the job moves to the **Assigned** stage on your Kanban board.
+- **Rejecting** removes the card from your board and returns the job to the pool for other manufacturers. You will be prompted to select a rejection reason — this data helps Shapelid improve future matching.
+
+After accepting, you have a short window (typically 30 minutes) to cancel without penalty if you realise you made an error. After that window, cancellations are flagged and may affect your reliability score.
+
+## Counter-Quoting
+
+For eligible jobs — indicated by the **Counter-Quote Available** badge — you are not locked to the customer's listed price. Instead, you can submit your own cost breakdown before accepting.
+
+To submit a counter-quote:
+
+1. Open the RFQ detail view and click **Submit Counter-Quote**.
+2. Enter your material cost, machining or print time, post-processing, and any additional line items.
+3. Add a brief note explaining your pricing if the total differs significantly from the estimate.
+4. Click **Submit**. The customer receives your quote and can accept, negotiate, or decline.
+
+Counter-quotes expire after 12 hours if the customer does not respond.
+
+<Tip>
+  The more completely you fill in your machine inventory under **Settings → Machines**, the more accurately Shapelid matches jobs to your capabilities. Manufacturers with detailed machine profiles — including build volumes, tolerances, and material lists — consistently see higher-value and better-fit RFQs on their Job Board.
+</Tip>

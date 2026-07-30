@@ -1,41 +1,69 @@
 ---
-title: "Platform Overview"
-description: "Architecture and components of the Shapelid manufacturing platform"
+title: "Shapelid Platform Overview and Supported Technologies"
+sidebarTitle: "Platform Overview"
+description: "Overview of the Shapelid manufacturing platform: the Client Portal, Partner Portal, Kernel pricing engine, and all 11 supported technologies."
 ---
 
-Shapelid consists of three interconnected applications and a kernel pricing engine.
+Shapelid is an on-demand manufacturing platform built to make custom part production accessible, transparent, and fast. Customers upload CAD files and receive instant quotes powered by automated geometric analysis and live material pricing. Verified manufacturers receive orders through a dedicated production portal and manage fulfillment end to end. Whether you're an engineer ordering a single prototype or a product team sourcing a short production run, Shapelid gives you direct access to a curated network of manufacturing partners — without the back-and-forth of traditional RFQ processes.
 
-## Architecture
+## The Client Portal
 
-| Component | URL | Stack |
-|-----------|-----|-------|
-| Client Portal | app.shapelid.com | Base44 + Three.js |
-| Partner Portal | partner.shapelid.com | Base44 |
-| Marketing Site | shapelid.com | Wix |
-| Kernel API | shapelid-kernel-production.up.railway.app | FastAPI + Trimesh + NumPy |
+The **Client Portal** at [app.shapelid.com](https://app.shapelid.com) is where you manage everything as a customer.
 
-## Revenue Model
+From the Client Portal, you can:
 
-Shapelid operates on a **Manufacturer of Record (MoR)** model:
+- **Upload CAD files** in supported formats and get instant pricing from the Kernel engine
+- **Choose your manufacturing technology and material** from 11 technologies and 135+ materials
+- **Review itemized quotes** showing material cost, machine time, setup fees, and overhead — broken down transparently before you commit
+- **Place and pay for orders** securely via PayTR, with your payment held in escrow until production is confirmed
+- **Track production in real time** — monitor your order's status from accepted through to shipped and delivered
+- **Manage your order history** — reorder previous parts, download invoices, and review past configurations
 
-- Customer pays the full price through PayTR
-- Shapelid takes a dynamic commission (18-35%)
-- Manufacturer receives the net amount after escrow release
+No manufacturing experience is required to use the Client Portal. The platform guides you through each decision, from file upload to checkout, with inline guidance and sensible defaults for every configuration option.
+
+## The Partner Portal
+
+The **Partner Portal** at [partner.shapelid.com](https://partner.shapelid.com) is the dedicated workspace for Shapelid's verified manufacturing partners.
+
+Manufacturers use the Partner Portal to receive incoming orders, manage their production queue, update job statuses, and communicate delivery timelines. Every manufacturer on the platform has been vetted by Shapelid for equipment capabilities, quality standards, and reliability. When you place an order, it is matched to a qualified partner based on technology, material, and capacity — you don't need to find or contact a manufacturer yourself.
+
+As a customer, you benefit from the Partner Portal indirectly: it's what ensures your order is handled by a qualified, accountable production team from the moment you check out.
 
 ## Supported Technologies
 
-<Table>
-  | Technology | Code | Analysis Type |
-  |------------|------|---------------|
-  | FDM | fdm | STL volume/surface (Trimesh) |
-  | SLA | sla | STL volume + support analysis |
-  | SLS | sls | STL volume + nesting optimization |
-  | MJF | mjf | STL volume + nesting optimization |
-  | DMLS | dmls | STL volume + support analysis |
-  | Polyjet | polyjet | STL volume |
-  | CNC Turning | cnc_turning | STEP/IGES (OCCT) |
-  | CNC Milling | cnc_milling | STEP/IGES (OCCT) |
-  | EDM Services | edm | DXF 2D analysis |
-  | Laser Cutting | laser_cutting | DXF 2D analysis |
-  | Bending | bending | DXF 2D analysis |
-</Table>
+Shapelid supports 11 manufacturing technologies across additive manufacturing and precision machining. The table below describes each technology and its most common applications to help you choose the right process for your part.
+
+| Technology | Category | Best Use Cases |
+|------------|----------|----------------|
+| **FDM** (Fused Deposition Modeling) | 3D Printing | Prototypes, functional parts, low-cost iterations, large builds |
+| **SLA** (Stereolithography) | 3D Printing | High-detail models, smooth surface finish, engineering and dental parts |
+| **SLS** (Selective Laser Sintering) | 3D Printing | Complex geometries, no support structures needed, small production batches |
+| **MJF** (Multi Jet Fusion) | 3D Printing | Production runs, consistent mechanical properties, full-density nylon parts |
+| **DMLS** (Direct Metal Laser Sintering) | 3D Printing | High-strength metal parts, aerospace, medical, and structural applications |
+| **Polyjet** | 3D Printing | Multi-material assemblies, full-color visual prototypes, fine surface detail |
+| **CNC Turning** | Machining | Cylindrical and rotationally symmetric metal and plastic components |
+| **CNC Milling** | Machining | Flat and complex 3D metal or plastic parts requiring tight tolerances |
+| **EDM** (Electrical Discharge Machining) | Machining | Hardened tool steels, intricate internal cavities, thin-wall features |
+| **Laser Cutting** | Sheet Processing | High-precision 2D cutting of sheet metal, acrylic, and plastic sheet stock |
+| **Bending** | Sheet Processing | Sheet metal forming for brackets, enclosures, panels, and structural parts |
+
+Not sure which process fits your design? The [Technologies guide](/ordering/technologies) includes detailed capability comparisons, tolerance tables, and material compatibility information for each process.
+
+## Accepted File Formats
+
+Shapelid's Kernel engine accepts the following file formats. Use the format appropriate for your design and intended manufacturing process:
+
+| File Format | Supported Processes | Notes |
+|-------------|--------------------|----|
+| **STL** | All 3D printing technologies | Most widely supported; no color or material data |
+| **OBJ** | All 3D printing technologies | Supports texture and color data |
+| **GLTF / GLB** | All 3D printing technologies | Modern format with embedded materials and scene data |
+| **STEP** | CNC Milling, CNC Turning, EDM | Preferred for machining; preserves exact geometry and tolerances |
+| **IGES** | CNC Milling, CNC Turning, EDM | Legacy neutral CAD format, widely supported by CAD tools |
+| **DXF** | Laser Cutting, Bending | 2D vector format for flat profiles and sheet layouts |
+
+For CNC machining orders, STEP files are strongly recommended over STL, as they preserve exact surface definitions and allow for tighter tolerance interpretation during quoting.
+
+<Note>
+  Ready to get started? Head to [app.shapelid.com](https://app.shapelid.com) to create a free account, upload your first file, and receive an instant manufacturing quote — no credit card required.
+</Note>

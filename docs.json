@@ -1,71 +1,13 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "mint",
   "name": "Shapelid",
+  "theme": "almond",
   "colors": {
-    "primary": "#FF5722",
-    "light": "#FF8A65",
-    "dark": "#E64A19"
+    "primary": "#ef7025",
+    "light": "#eec9bc",
+    "dark": "#4fa1ab"
   },
   "favicon": "/favicon.svg",
-  "navigation": {
-    "pages": [
-      {
-        "group": "Getting Started",
-        "pages": [
-          "index",
-          "quickstart",
-          "platform-overview"
-        ]
-      },
-      {
-        "group": "Platform",
-        "pages": [
-          "platform/client-portal",
-          "platform/partner-portal",
-          "platform/pricing-engine",
-          "platform/material-database"
-        ]
-      },
-      {
-        "group": "API Reference",
-        "pages": [
-          "api/analyze",
-          "api/options",
-          "api/nest",
-          "api/calibrate"
-        ]
-      },
-      {
-        "group": "Integrations",
-        "pages": [
-          "integrations/paytr",
-          "integrations/geliver",
-          "integrations/nilvera",
-          "integrations/kernel"
-        ]
-      }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Client Portal",
-          "href": "https://app.shapelid.com",
-          "icon": "browser"
-        },
-        {
-          "anchor": "Partner Portal",
-          "href": "https://partner.shapelid.com",
-          "icon": "factory"
-        },
-        {
-          "anchor": "Kernel API",
-          "href": "https://shapelid-kernel-production.up.railway.app/docs",
-          "icon": "code"
-        }
-      ]
-    }
-  },
   "logo": {
     "light": "/logo/light.svg",
     "dark": "/logo/dark.svg"
@@ -83,16 +25,83 @@
       "href": "https://app.shapelid.com"
     }
   },
-  "contextual": {
-    "options": [
-      "copy",
-      "view",
-      "chatgpt",
-      "claude",
-      "perplexity",
-      "mcp",
-      "cursor",
-      "vscode"
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Help Center",
+        "groups": [
+          {
+            "group": "Getting Started",
+            "pages": [
+              "introduction",
+              "quickstart",
+              "platform-overview"
+            ]
+          },
+          {
+            "group": "Ordering",
+            "pages": [
+              "ordering/upload-and-quote",
+              "ordering/technologies",
+              "ordering/materials",
+              "ordering/manual-quote"
+            ]
+          },
+          {
+            "group": "Production & Delivery",
+            "pages": [
+              "production/tracking",
+              "production/quality-control",
+              "production/shipping"
+            ]
+          },
+          {
+            "group": "Account",
+            "pages": [
+              "account/managing-orders",
+              "account/billing-and-invoices",
+              "account/settings"
+            ]
+          },
+          {
+            "group": "For Manufacturers",
+            "pages": [
+              "manufacturers/getting-started",
+              "manufacturers/job-board",
+              "manufacturers/production-management",
+              "manufacturers/payments"
+            ]
+          },
+          {
+            "group": "Support",
+            "pages": [
+              "support/faq",
+              "support/troubleshooting",
+              "support/contact"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "API Reference",
+        "groups": [
+          {
+            "group": "Overview",
+            "pages": [
+              "api/overview"
+            ]
+          },
+          {
+            "group": "Endpoints",
+            "pages": [
+              "api/analyze",
+              "api/options",
+              "api/nest",
+              "api/calibrate"
+            ]
+          }
+        ]
+      }
     ]
   },
   "footer": {

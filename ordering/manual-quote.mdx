@@ -1,0 +1,76 @@
+---
+title: "Requesting a Manual Quote for Complex Parts"
+sidebarTitle: "Manual Quote"
+description: "Some parts require a manual review. Learn what triggers the RFQ flow, what to expect, and how to speed up your manual quote request."
+---
+
+Shapelid's instant pricing engine handles the vast majority of uploaded parts automatically — analysing geometry, looking up live material rates, and returning a full cost breakdown in seconds. However, some combinations of geometry, quantity, material, and compliance requirements fall outside what can be reliably automated. In those cases, the system seamlessly transitions your order into a **Manual Quote (RFQ)** flow, where a Shapelid production engineer reviews your file and returns a tailored quote, typically within 24 business hours.
+
+## What Triggers a Manual Quote
+
+<AccordionGroup>
+  <Accordion title="1. High Quantity Above Technology Threshold">
+    Every technology has a quantity ceiling above which the instant engine defers to human review. Large production runs involve negotiated machine scheduling, raw material procurement at scale, and multi-batch quality planning that the automated calculator is not designed to handle. If your quantity exceeds the threshold for your chosen technology, the system will flag the order and route it to the RFQ queue automatically. You do not need to do anything extra — just proceed and you'll be prompted to submit an RFQ.
+  </Accordion>
+  <Accordion title="2. Technology-Material Incompatibility">
+    Not every material is available on every technology. If you select a combination that isn't directly supported — for example, a metal that isn't stocked by any DMLS partner for a given build size, or a polymer that requires equipment not universally available — the system will alert you and offer the manual quote path, where the team can source the material or suggest the closest compatible alternative.
+  </Accordion>
+  <Accordion title="3. High Overhang Ratio (SLA / DMLS)">
+    SLA and DMLS parts with a very high ratio of overhanging surfaces (typically overhangs extending more than 1 mm horizontally without support) require careful support placement and removal planning. When the geometry analyser detects an overhang ratio that exceeds the automated threshold, it routes the order to a human engineer who can review support strategy, post-processing requirements, and their impact on surface finish and cost.
+  </Accordion>
+  <Accordion title="4. Geometric Complexity — Thin Walls or Internal Channels">
+    Parts with walls thinner than 0.8 mm (FDM/SLS) or 0.3 mm (SLA), or with deep blind holes, undercut pockets, or complex internal channel networks, require manual evaluation. The automated engine cannot reliably predict machine time or material usage for highly complex geometries, and thin walls introduce a risk of print failure that must be assessed before quoting.
+  </Accordion>
+  <Accordion title="5. Volume Exceeds Build Envelope">
+    Each technology has a maximum build volume. If your part is larger than the envelope of any machine in the Shapelid network for that technology, the system will trigger manual review. The production team will evaluate whether the part can be split and bonded, printed on a large-format machine that requires special scheduling, or produced by a different process entirely.
+  </Accordion>
+  <Accordion title="6. Custom Certification Required">
+    Orders requiring material test reports, First Article Inspection (FAI), AS9100D (aerospace), ISO 13485 (medical devices), EN 9100, RoHS, REACH, or customer-specific quality plans cannot be priced through the automated flow. Certification requirements affect every stage of production — from raw material traceability to post-production documentation — and must be scoped by the quality team before a price is committed.
+  </Accordion>
+  <Accordion title="7. Multi-Part Assembly">
+    When you upload multiple files intended to be assembled together — or a single file containing multiple bodies — the instant engine cannot always determine assembly tolerances, mating clearances, or the correct production sequence. Multi-part assemblies are routed to manual review so the team can evaluate fit, finish matching, and whether parts should be produced in the same batch.
+  </Accordion>
+  <Accordion title="8. Non-Standard Material Request">
+    If the material you need isn't in the Shapelid catalogue, or if you're supplying your own raw material (customer-furnished material, or CFM), the order must go through manual review for feasibility, procurement, and test requirements. You can describe your material requirements in the RFQ form and the team will confirm availability and pricing.
+  </Accordion>
+</AccordionGroup>
+
+## What Happens After You Submit an RFQ
+
+Once your order enters the manual quote flow, here is what you can expect:
+
+1. **Instant acknowledgement** — You receive an email confirmation within minutes confirming that your RFQ has been received and assigned a reference number. Save this number for any follow-up communications.
+2. **Engineer review** — A Shapelid production engineer analyses your file, verifies the geometry against the requirements you specified, identifies any potential manufacturing issues, and consults with partner manufacturers on capacity and pricing.
+3. **Quote delivered to your inbox** — Your tailored quote is emailed to the address on your account, typically within **24 business hours** of submission. The quote includes an itemised breakdown, lead time estimate, and any DFM (Design for Manufacturability) feedback the engineer identified.
+4. **Approve or negotiate** — You can accept the quote directly from the email with a single click, or reply to discuss alternatives — different materials, tighter or looser tolerances, split deliveries, or a revised quantity.
+5. **Order confirmed** — Once you accept, the order is created in your dashboard and proceeds through the standard production and tracking flow.
+
+<Note>
+  The standard RFQ response time is **24 business hours** (Monday–Friday, 09:00–18:00 Turkey time, excluding Turkish public holidays). If your project has an urgent deadline, note this clearly in the RFQ form's deadline field — the team prioritises time-sensitive reviews where possible.
+</Note>
+
+## How to Submit the Best RFQ
+
+A complete, well-documented RFQ reduces back-and-forth and gets you an accurate quote faster. Follow these steps when submitting:
+
+<Steps>
+  <Step title="Describe Your Part and Application">
+    In the **Requirements** field, explain what the part does, where it will be used, and any performance conditions it must survive (temperature, pressure, chemical exposure, load cycles). Even two or three sentences give the engineer critical context that the 3D file alone cannot convey.
+  </Step>
+  <Step title="Specify Quantity and Delivery Deadline">
+    Enter the exact quantity you need and the date by which parts must arrive at your facility. If you have multiple delivery phases (e.g., 10 prototypes now, 200 production units next quarter), describe both in the notes. This helps the team plan batch scheduling and give you the most competitive pricing.
+  </Step>
+  <Step title="List Certification and Documentation Needs">
+    Check all applicable boxes in the Certification section: material test reports, dimensional inspection reports, FAI, AS9100D, ISO 13485, RoHS, or other customer-specific requirements. Missing this step is the most common cause of requoting delays, as certification scope directly affects cost and lead time.
+  </Step>
+  <Step title="Specify Critical Tolerances and Surface Finishes">
+    If certain dimensions are functionally critical, list them explicitly. For example: "Bore Ø25.000 mm must be held to H7 (0 / +0.021 mm); all other dimensions ±0.1 mm." If your part requires a specific surface roughness (e.g., Ra 0.8 µm on a sealing face), state it here or on a 2D drawing.
+  </Step>
+  <Step title="Review and Submit">
+    Double-check that your file uploaded correctly in the 3D viewer, confirm all fields are filled, and click **Submit RFQ**. You'll receive the acknowledgement email within minutes.
+  </Step>
+</Steps>
+
+<Tip>
+  Attaching a **2D engineering drawing (PDF)** alongside your 3D file is the single most effective way to speed up your manual quote. A good drawing communicates tolerances, GD&T callouts, surface finish requirements, material specifications, and any special processing notes in a format engineers understand immediately — eliminating the most common clarification questions and often reducing review time by half. Even a rough sketch with critical dimensions noted is better than no drawing at all.
+</Tip>

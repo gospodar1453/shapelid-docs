@@ -1,0 +1,257 @@
+---
+title: "Troubleshooting Common Issues on Shapelid"
+sidebarTitle: "Troubleshooting"
+description: "Fix common problems on Shapelid — from file upload errors and instant pricing issues to payment failures and account access problems."
+---
+
+Most issues on Shapelid can be resolved quickly without contacting support. Work through the relevant section below for step-by-step fixes. If a problem persists after following these steps, contact us at [destek@shapelid.com](mailto:destek@shapelid.com) and include your order ID, a screenshot of the error, and your file if applicable.
+
+---
+
+## File Upload Errors
+
+<AccordionGroup>
+
+  <Accordion title="File too large to upload">
+    Shapelid accepts files up to **50 MB** per upload. If your file exceeds this limit, try one of the following:
+
+    <Steps>
+      <Step title="Reduce mesh resolution">
+        Open your file in a mesh editor such as Meshmixer, Blender, or PrusaSlicer and use the **Reduce** or **Decimate** function to lower the polygon count. For most 3D printing workflows, a resolution of 0.05–0.1 mm is sufficient and produces much smaller files than the default export settings of many CAD tools.
+      </Step>
+      <Step title="Export as STEP instead of STL">
+        STEP files store geometry as mathematical surfaces rather than triangle meshes, which makes them dramatically smaller. If your CAD software supports STEP export (Fusion 360, SolidWorks, FreeCAD all do), use that format instead.
+      </Step>
+      <Step title="Split large assemblies">
+        If you are uploading a multi-body assembly, split it into individual component files and upload them separately. You can combine them into a single order at checkout.
+      </Step>
+    </Steps>
+  </Accordion>
+
+  <Accordion title="Unsupported file format error">
+    Shapelid accepts **STL, OBJ, GLTF, STEP, IGES, and DXF** files only. If you see an "unsupported format" error, check the following:
+
+    - Your file extension matches the actual format. Some tools export files with incorrect extensions — open the file in your CAD software and re-export it explicitly in one of the accepted formats.
+    - You are not uploading a compressed archive (`.zip`, `.rar`, `.7z`). Extract the file first and upload the CAD file directly.
+    - If you are uploading a DXF for Laser Cutting or Bending, ensure it was exported from a 2D drawing, not a 3D model projected to DXF. Three-dimensional DXF files are not supported.
+
+    <Note>
+      Proprietary formats such as `.f3d` (Fusion 360), `.sldprt` (SolidWorks), `.3dm` (Rhino), and `.prt` (CATIA/NX) are not accepted. Export to STEP or STL before uploading.
+    </Note>
+  </Accordion>
+
+  <Accordion title="Mesh not watertight / open edges detected">
+    A watertight mesh is one with no holes, gaps, or open edges — every edge is shared by exactly two faces. Non-watertight meshes cannot be priced or printed reliably.
+
+    <Steps>
+      <Step title="Run automatic repair in Meshmixer">
+        Open the file in **Meshmixer**, go to **Analysis → Inspector**, and click **Auto Repair All**. This fixes the majority of open-edge issues automatically.
+      </Step>
+      <Step title="Use PrusaSlicer or Cura for quick fixes">
+        Both slicers include a built-in mesh repair step. Import your file, let the slicer repair it, and then re-export as STL.
+      </Step>
+      <Step title="Use Netfabb or Microsoft 3D Builder">
+        For more complex repairs, open your file in **Netfabb** (free online version at netfabb.autodesk.com) or **Microsoft 3D Builder** (free on Windows) and use their repair tools.
+      </Step>
+      <Step title="Re-export from your CAD software">
+        If the problem originates from how your CAD model was constructed (e.g., surfaces that don't fully close), fix the underlying geometry in your CAD tool and export a clean STL with the "export as solid" option enabled.
+      </Step>
+    </Steps>
+  </Accordion>
+
+  <Accordion title="Zero volume detected">
+    This error means the system calculated zero or near-zero printable volume after parsing your file. Common causes:
+
+    - **The file contains only surfaces**, not a solid body. This often happens when exporting sketch geometry or surface models from CAD software. Ensure your model is a closed solid before exporting.
+    - **Units mismatch** — your file was exported in millimetres but the viewer interpreted it as metres (or vice versa), causing the part to appear microscopically small. Re-export with explicit units set to millimetres.
+    - **Empty or corrupted file** — the file exported incompletely. Check the file size on your computer; if it is 0 bytes or unusually small (under 1 KB for a real part), re-export it.
+
+    If none of the above resolves the issue, email the file to [destek@shapelid.com](mailto:destek@shapelid.com) and our engineering team will diagnose it for you.
+  </Accordion>
+
+</AccordionGroup>
+
+---
+
+## Pricing Issues
+
+<AccordionGroup>
+
+  <Accordion title="The price seems too high">
+    If a quoted price seems higher than expected, check these common factors:
+
+    - **Technology selection** — processes like DMLS and SLA cost significantly more per gram than FDM. If your part doesn't require high precision or specific material properties, switching to FDM or SLS may reduce costs substantially.
+    - **Material selection** — engineering materials (PEEK, Ultem, titanium) carry a large material premium. If your application allows it, a standard material will cost much less.
+    - **Quantity** — unit prices drop with volume. Try increasing the quantity to see the per-part price at higher tiers.
+    - **Finish options** — post-processing finishes such as anodising, powder coating, or vapour smoothing add to the base part cost. Selecting "as printed" or "as machined" gives you the lowest base price.
+    - **Resolution** — for 3D printing, finer layer heights increase machine time and therefore cost. If visual quality is not critical, switching from "fine" to "standard" resolution reduces cost.
+
+    If you've reviewed all these factors and still believe the price is incorrect, contact [destek@shapelid.com](mailto:destek@shapelid.com) with your order configuration details.
+  </Accordion>
+
+  <Accordion title="Can't get an instant price — system requests a manual quote">
+    Some part and order configurations cannot be priced automatically. This is expected behaviour when:
+
+    - Quantity is above the auto-pricing threshold for the selected technology
+    - The part has a high overhang ratio, thin walls, or complex internal channels
+    - The part volume exceeds the standard build envelope
+    - You selected a certification requirement (ISO 9001, material cert, inspection report)
+    - You uploaded a multi-part assembly
+
+    In these cases, submit the manual quote request through the portal. Our engineering team reviews manual quote requests and typically responds within **one business day** with a full breakdown. You are not charged anything until you accept the quote.
+  </Accordion>
+
+  <Accordion title="Currency confusion — prices shown in USD but charged in TRY">
+    Shapelid displays indicative prices in **USD** throughout the configuration and checkout flow for ease of reference. However, all transactions are processed in **Turkish Lira (TRY)** via PayTR.
+
+    At the payment step, you will see the TRY equivalent calculated at the current exchange rate. This is the amount that will be charged to your card. If you're paying with a non-TRY card, your bank may apply an additional foreign exchange fee — check with your bank for details.
+
+    <Note>
+      Exchange rates are applied at the moment of payment authorisation. Shapelid does not lock exchange rates in advance, so there may be small differences between the USD indicative price and the final TRY-converted charge if rates shift between quote and payment.
+    </Note>
+  </Accordion>
+
+</AccordionGroup>
+
+---
+
+## Payment Errors
+
+<AccordionGroup>
+
+  <Accordion title="Card declined">
+    If your card is declined at checkout, try the following steps:
+
+    <Steps>
+      <Step title="Check your card details">
+        Verify that the card number, expiry date, CVV, and billing address are entered correctly. Even a single digit error causes a decline.
+      </Step>
+      <Step title="Confirm your bank has not blocked the transaction">
+        Some Turkish banks flag e-commerce transactions for fraud review, especially for first-time merchants. Check your banking app for a pending authorisation request or security alert, and approve it before retrying.
+      </Step>
+      <Step title="Try a different card">
+        If you have another card available, attempt the payment with it. This rules out a card-specific block.
+      </Step>
+      <Step title="Contact your bank">
+        If the card continues to be declined, call the number on the back of your card. Ask your bank whether an international or e-commerce block is active and request that it be removed for this transaction.
+      </Step>
+    </Steps>
+
+    If your card is confirmed unblocked but payments still fail, contact [destek@shapelid.com](mailto:destek@shapelid.com) with the last four digits of your card and the approximate time of the failed attempt.
+  </Accordion>
+
+  <Accordion title="PayTR payment gateway error">
+    If you see a generic PayTR error page or a timeout during checkout:
+
+    - **Do not retry the payment immediately.** Wait 5 minutes and check your order history at [app.shapelid.com](https://app.shapelid.com) first. Sometimes the payment succeeded on PayTR's side even if the redirect back to Shapelid failed.
+    - **Clear your browser cache and cookies**, then return to your cart and attempt payment again.
+    - **Disable browser extensions** such as ad blockers or privacy tools, as these can interfere with the PayTR payment iframe.
+    - **Try a different browser** — Chrome and Firefox are fully tested with the PayTR integration.
+
+    <Warning>
+      If your bank statement shows a charge but the Shapelid portal shows the order as unpaid, do not pay again. Email [destek@shapelid.com](mailto:destek@shapelid.com) immediately with your order ID and a screenshot of your bank statement. We will reconcile the payment manually.
+    </Warning>
+  </Accordion>
+
+  <Accordion title="Installment (taksit) option not showing">
+    Taksit installment payment is supported for Turkish-issued credit cards on participating bank agreements with PayTR. If the installment option is not visible:
+
+    - Confirm you are using a **Turkish-issued credit card** (not a debit card or foreign card — taksit requires a Turkish credit card)
+    - Check that your card's bank participates in the PayTR installment programme. Most major Turkish banks (İş Bankası, Garanti, Yapı Kredi, Akbank, Ziraat) are supported, but some smaller banks are not
+    - Ensure the total order value meets the minimum threshold for installments — some banks require a minimum purchase amount (typically ₺500 or higher) before offering taksit
+    - Your bank may have disabled installments for your specific card tier; contact your bank to confirm
+
+    If your card should be eligible but installments are still not appearing, contact [destek@shapelid.com](mailto:destek@shapelid.com).
+  </Accordion>
+
+</AccordionGroup>
+
+---
+
+## Order Tracking
+
+<AccordionGroup>
+
+  <Accordion title="My order appears stuck at the same stage">
+    Order stages sometimes remain unchanged for longer than expected. Here's what each stage means and when to act:
+
+    | Stage | Normal Duration | When to Contact Support |
+    |---|---|---|
+    | Payment confirmed | Minutes | If still showing after 24 hours |
+    | In production | See lead time table in FAQ | If exceeded by more than 2 business days |
+    | Quality control | 1–2 business days | If exceeded by more than 3 business days |
+    | Dispatched | Carrier-dependent | If tracking number shows no movement for 5 days |
+
+    If your order is stuck beyond the "contact support" threshold in the table above, email [destek@shapelid.com](mailto:destek@shapelid.com) with your order ID and we will investigate with the manufacturing partner immediately.
+  </Accordion>
+
+  <Accordion title="Not receiving order notification emails">
+    If you're not receiving email notifications when your order status changes:
+
+    <Steps>
+      <Step title="Check your spam or junk folder">
+        Shapelid sends notifications from a `@shapelid.com` address. Add `destek@shapelid.com` to your contacts or safe-senders list to prevent future filtering.
+      </Step>
+      <Step title="Verify your email address in the portal">
+        Log in to [app.shapelid.com](https://app.shapelid.com), go to **Account Settings**, and confirm the email address on file is correct and that your inbox for that address is accessible.
+      </Step>
+      <Step title="Check portal notifications">
+        Even if email notifications fail, all status updates are visible in the **Orders** section of the portal. You can monitor your order there at any time.
+      </Step>
+      <Step title="Enable SMS notifications">
+        In **Account Settings**, you can add a Turkish mobile number to receive SMS alerts when your order is dispatched. This provides a reliable backup to email.
+      </Step>
+    </Steps>
+  </Accordion>
+
+</AccordionGroup>
+
+---
+
+## Account Access
+
+<AccordionGroup>
+
+  <Accordion title="Can't log in to the portal">
+    If you're unable to log in to [app.shapelid.com](https://app.shapelid.com):
+
+    - Double-check that you're using the email address you registered with. Try all email addresses you may have used.
+    - Ensure Caps Lock is off when entering your password.
+    - Clear your browser's cookies and cached data for `app.shapelid.com`, then try again.
+    - Try logging in from a private/incognito window to rule out extension conflicts.
+
+    If none of the above works, use the **Forgot Password** link on the login page to reset your credentials.
+  </Accordion>
+
+  <Accordion title="Forgot password">
+    <Steps>
+      <Step title="Go to the login page">
+        Visit [app.shapelid.com](https://app.shapelid.com) and click **Forgot Password** below the sign-in form.
+      </Step>
+      <Step title="Enter your email address">
+        Type in the email address you used when creating your Shapelid account and click **Send Reset Link**.
+      </Step>
+      <Step title="Check your inbox">
+        You'll receive a password reset email within a few minutes. If it doesn't arrive, check your spam folder. The reset link is valid for 30 minutes.
+      </Step>
+      <Step title="Set a new password">
+        Click the link in the email and enter a new password. You'll be signed in automatically after resetting.
+      </Step>
+    </Steps>
+
+    If you no longer have access to the email address on your account, contact [destek@shapelid.com](mailto:destek@shapelid.com) from any address and verify your identity by providing your full name and a recent order ID.
+  </Accordion>
+
+  <Accordion title="Email not confirmed / confirmation email not received">
+    After registering, Shapelid sends a confirmation email to verify your address. If you haven't received it:
+
+    - Check your spam or junk folder for an email from `@shapelid.com`
+    - Log in to [app.shapelid.com](https://app.shapelid.com) — if your email is unconfirmed, a banner at the top of the page allows you to **resend the confirmation email**
+    - Confirm there are no typos in your registered email address under **Account Settings**; if the address is wrong, update it and request a new confirmation
+
+    <Warning>
+      Unconfirmed accounts cannot place orders or access order history. Confirm your email before attempting checkout.
+    </Warning>
+  </Accordion>
+
+</AccordionGroup>

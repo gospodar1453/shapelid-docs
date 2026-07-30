@@ -1,0 +1,141 @@
+---
+title: "Frequently Asked Questions About Shapelid"
+sidebarTitle: "FAQ"
+description: "Answers to the most common questions about Shapelid — file formats, instant pricing, production times, payment options, shipping, and more."
+---
+
+Shapelid connects you with verified Turkish manufacturers for on-demand 3D printing and CNC machining. Whether you're uploading your first file or placing a bulk production order, the answers below cover the most common questions our customers ask. If you don't find what you're looking for, reach out to us at [destek@shapelid.com](mailto:destek@shapelid.com).
+
+<AccordionGroup>
+
+  <Accordion title="What file formats do you accept?">
+    Shapelid accepts the following CAD and mesh file formats:
+
+    - **STL** — the most common format for 3D printing; ideal for FDM, SLA, SLS, MJF, and DMLS
+    - **OBJ** — widely supported mesh format, suitable for most additive technologies
+    - **GLTF** — useful for assemblies and textured geometry
+    - **STEP** — the preferred format for CNC machining (Turning, Milling, EDM) because it preserves exact geometry and tolerances
+    - **IGES** — another solid-model format accepted for CNC and hybrid workflows
+    - **DXF** — the standard for 2D profiles used in Laser Cutting and Bending
+
+    For best results with CNC processes, always upload a STEP file. For 3D printing, ensure your mesh is watertight (no open edges or inverted normals) before uploading.
+  </Accordion>
+
+  <Accordion title="How does instant pricing work?">
+    When you upload a file, the Shapelid Kernel API performs a real-time geometric analysis of your part. It calculates volume, surface area, estimated print or machining time, and applies live material and machine rates from our verified manufacturer network.
+
+    Pricing is broken down into four components:
+
+    1. **Material cost** — based on actual material consumption
+    2. **Machine cost** — based on estimated run time for the selected technology
+    3. **Setup cost** — a fixed charge covering job preparation
+    4. **Overhead** — a margin shared between Shapelid and the manufacturing partner
+
+    You see the full breakdown before you confirm your order. Prices are displayed in USD and updated automatically as you change technology, material, quantity, finish, or resolution options.
+  </Accordion>
+
+  <Accordion title="Why did my part go to manual quote?">
+    Certain part characteristics prevent the system from calculating a reliable instant price. When one or more of the following conditions are detected, your order is flagged for manual review by our engineering team:
+
+    - **High quantity** — the requested quantity exceeds the auto-pricing threshold for the selected technology and material
+    - **High overhang ratio** — the geometry requires extensive support structures that significantly affect cost
+    - **Thin walls** — wall thickness falls below the minimum reliable print threshold for the chosen process
+    - **Complex internal channels** — geometries such as conformal cooling channels or lattice structures need manual assessment
+    - **Volume exceeds build envelope** — the part is larger than a single build volume and may require splitting or a specialised machine
+    - **Certification required** — orders requiring ISO 9001, material traceability certificates, or inspection reports need manual handling
+    - **Multi-part assembly** — orders containing multiple distinct components that interact
+
+    After submission, our team typically responds to manual quote requests within one business day. You'll receive a detailed quote by email and in your portal at [app.shapelid.com](https://app.shapelid.com).
+  </Accordion>
+
+  <Accordion title="How long does production take?">
+    Lead times depend on the manufacturing technology, material, and current capacity across our partner network. Typical ranges are:
+
+    | Technology | Standard Lead Time |
+    |---|---|
+    | FDM | 2–4 business days |
+    | SLA | 3–5 business days |
+    | SLS / MJF | 5–8 business days |
+    | DMLS | 7–12 business days |
+    | Polyjet | 3–5 business days |
+    | CNC Turning / Milling | 5–10 business days |
+    | EDM | 7–14 business days |
+    | Laser Cutting | 2–4 business days |
+    | Bending | 3–5 business days |
+
+    These are production times only and do not include shipping. You'll see an estimated delivery date at checkout before confirming payment. Rush options may be available for select technologies — check the options panel when configuring your order.
+  </Accordion>
+
+  <Accordion title="What payment methods do you accept?">
+    Shapelid uses **PayTR** as its payment processor, which supports all major Turkish-issued and internationally-issued credit and debit cards, including Visa, Mastercard, and Troy.
+
+    Turkish customers can also pay in **taksit** (installments) — split your order total into 3, 6, 9, or 12 equal monthly payments at no extra cost, subject to your bank's installment eligibility. The available installment options are shown automatically at checkout based on your card.
+
+    All transactions are processed in Turkish Lira (TRY). The portal displays indicative USD prices for reference; the final charge on your card will reflect the TRY equivalent at the exchange rate applied by PayTR at the time of payment.
+  </Accordion>
+
+  <Accordion title="How does the escrow model protect me?">
+    Shapelid holds your payment in escrow from the moment you confirm your order until the manufacturing partner completes production and passes quality control.
+
+    Here's how it works:
+
+    1. **You pay** — funds are held securely by Shapelid, not transferred to the manufacturer
+    2. **Manufacturer produces** — the partner fulfils your order under the agreed specifications
+    3. **Quality control** — Shapelid's QC team inspects the parts against your file and order requirements
+    4. **Release** — funds are released to the manufacturer only after parts pass QC and are dispatched to you
+
+    If a part fails quality control, it is reproduced at no additional cost to you. You are never charged for a part that doesn't meet your specifications. This escrow model ensures that every Shapelid order is backed by a production guarantee.
+  </Accordion>
+
+  <Accordion title="Can I order internationally?">
+    Shapelid currently serves customers and ships within **Turkey only**. Both billing addresses and delivery addresses must be located in Turkey.
+
+    We are actively working to expand to additional markets. If you'd like to be notified when international shipping becomes available, send a note to [destek@shapelid.com](mailto:destek@shapelid.com) with the subject line "International Waitlist" and the country you're writing from.
+  </Accordion>
+
+  <Accordion title="How do I track my order?">
+    Log in to the client portal at [app.shapelid.com](https://app.shapelid.com) and open the **Orders** section. Each order shows its current stage:
+
+    - **Payment confirmed** — escrow payment received, order queued
+    - **In production** — manufacturing partner has started work
+    - **Quality control** — parts are being inspected by the Shapelid QC team
+    - **Dispatched** — shipment handed to the carrier, tracking number provided
+    - **Delivered** — confirmed delivery
+
+    You'll receive an email and an in-portal notification at each stage transition. If you enabled SMS notifications in your account settings, you'll also receive a text message when your order is dispatched.
+  </Accordion>
+
+  <Accordion title="What happens if my part doesn't pass quality control?">
+    If a part fails the Shapelid quality control inspection, we initiate a **free reproduction** with the same manufacturing partner or an alternative partner if the original cannot meet the specification.
+
+    You will be notified by email with details of the failure and the expected reproduction timeline. In most cases, a reproduced part ships within the original lead-time window from the date of the QC failure notification.
+
+    If reproduction is not possible (for example, due to a design issue in the uploaded file), our team will contact you to discuss options including a design review, file modification, or a full refund. Your escrow funds remain protected throughout this process.
+  </Accordion>
+
+  <Accordion title="Can I reorder the same part?">
+    Yes. Every order you place is saved in your **Order History** at [app.shapelid.com](https://app.shapelid.com). To reorder, open the original order, click **Reorder**, and confirm or adjust the quantity, material, and finish options before checkout.
+
+    Your uploaded file is stored securely and linked to your account, so you don't need to re-upload it. If you'd like to reorder with a revised file, simply upload the new version when prompted — the original file remains in your history.
+  </Accordion>
+
+  <Accordion title="Do you offer volume discounts?">
+    Yes. Shapelid applies automatic volume pricing tiers for most technologies and materials. As you increase quantity in the order configuration panel, the unit price updates in real time to reflect the discount.
+
+    For very large production runs — typically above a few hundred units for additive manufacturing or above 50 pieces for CNC — the system will trigger a manual quote. Our team will provide a custom-negotiated price that can be significantly lower than standard tier pricing. Submit a manual quote request through the portal or email [destek@shapelid.com](mailto:destek@shapelid.com) with your quantity, technology, material, and an attached file.
+  </Accordion>
+
+  <Accordion title="How do I become a manufacturing partner?">
+    If you operate a manufacturing facility in Turkey and would like to join the Shapelid verified partner network, visit [partner.shapelid.com](https://partner.shapelid.com) to start your application.
+
+    The onboarding process includes:
+
+    1. **Facility assessment** — a review of your machines, technologies, and capacity
+    2. **Sample production run** — you produce a set of benchmark parts so we can evaluate quality and consistency
+    3. **Certification review** — we verify any ISO, material, or process certifications you hold
+    4. **Agreement & integration** — you receive access to the partner dashboard and orders start flowing
+
+    Partners who meet Shapelid's quality standards benefit from a steady stream of pre-paid, escrow-backed orders with no sales overhead. For questions, email [destek@shapelid.com](mailto:destek@shapelid.com) with the subject line "Partner Application".
+  </Accordion>
+
+</AccordionGroup>

@@ -1,36 +1,107 @@
 ---
-title: "Quickstart"
-description: "Get your first quote in under 5 minutes"
+title: "Get Your First Quote in Under 5 Minutes"
+sidebarTitle: "Quickstart"
+description: "Upload your CAD file, choose a technology and material, and get an instant manufacturing quote on Shapelid in minutes."
 ---
+
+Shapelid is designed to get you from CAD file to confirmed quote as fast as possible. This guide walks you through every step — from creating your account to reviewing a full pricing breakdown — so you can place your first order with confidence. The entire process typically takes less than five minutes.
 
 ## Prerequisites
 
-Before you begin, you'll need:
+Before you begin, make sure you have the following ready:
 
-- A CAD file (STL, OBJ, GLTF, STEP, IGES, or DXF)
-- A Shapelid account ([sign up here](https://app.shapelid.com))
-- A modern browser (Chrome, Firefox, Safari, or Edge)
+- **A CAD or design file** in one of the supported formats:
 
-## Get started
+  | Format | Supported For |
+  |--------|--------------|
+  | STL | 3D printing (all technologies) |
+  | OBJ | 3D printing (all technologies) |
+  | GLTF | 3D printing (all technologies) |
+  | STEP | CNC machining (Milling, Turning, EDM) |
+  | IGES | CNC machining (Milling, Turning, EDM) |
+  | DXF | 2D processes (Laser Cutting, Bending) |
+
+- **A Shapelid account** — [sign up free at app.shapelid.com](https://app.shapelid.com). No credit card is required to get a quote.
+
+If your design is not yet exported from your CAD tool, export it in the appropriate format for your intended process before continuing.
+
+## Steps
 
 <Steps>
-  <Step title="Upload your file">
-    Go to [app.shapelid.com](https://app.shapelid.com) and upload your CAD file. The system automatically detects the format and runs geometric analysis.
+  <Step title="Sign Up or Log In">
+    Go to [app.shapelid.com](https://app.shapelid.com) and create a free account, or log in if you already have one. After logging in, you'll land on your **Orders Dashboard** where all of your active and past orders are listed.
+
+    Click **New Order** or **Get a Quote** to begin.
   </Step>
-  <Step title="Choose a technology">
-    Select from 11 production technologies: FDM, SLA, SLS, MJF, DMLS, CNC Turning, CNC Milling, EDM, Laser Cutting, Bending, or Polyjet.
+  <Step title="Upload Your CAD File">
+    Drag and drop your file onto the upload area, or click **Browse Files** to select it from your computer. Shapelid accepts STL, OBJ, GLTF, STEP, IGES, and DXF files.
+
+    Once uploaded, the Kernel engine automatically analyzes your file's geometry — calculating volume, surface area, bounding box dimensions, and identifying any potential issues. You'll see a 3D preview of your part rendered in the browser.
+
+    <Note>
+      If your file contains errors (non-manifold geometry, missing faces, or zero-thickness walls), Shapelid will flag the issue and suggest corrective action before you proceed.
+    </Note>
   </Step>
-  <Step title="Select material and options">
-    Pick from 135+ materials. Configure finish, color, resolution, tolerance, and certification options based on the selected technology.
+  <Step title="Select a Manufacturing Technology">
+    Choose from the 11 available technologies. Each option displays a short description and typical use cases to help you decide:
+
+    - **FDM** — Low-cost thermoplastic prototypes and functional parts
+    - **SLA** — High-detail resin with smooth surface finish
+    - **SLS** — Complex geometries, no support structures
+    - **MJF** — Consistent production-ready nylon parts
+    - **DMLS** — High-strength metal, aerospace and medical grade
+    - **Polyjet** — Multi-material, color, visual prototypes
+    - **CNC Milling** — Precision machined metal and plastic
+    - **CNC Turning** — Cylindrical parts from bar stock
+    - **EDM** — Hardened metals, intricate internal features
+    - **Laser Cutting** — 2D sheet metal and plastic
+    - **Bending** — Sheet metal forming
+
+    If you're unsure which technology is right for your part, visit the [Technologies guide](/ordering/technologies) for a detailed comparison.
   </Step>
-  <Step title="Get your instant quote">
-    The pricing engine calculates material cost, machine time, setup, and overhead. Adjust quantity to see volume pricing.
+  <Step title="Pick a Material and Configure Options">
+    After selecting a technology, you'll see the available materials for that process. Shapelid offers two selection modes:
+
+    **Simple Mode** — Browse materials by category (e.g., Standard Plastics, Engineering Resins, Metals). Select a material and the platform fills in standard parameters automatically. This is the fastest path to a quote.
+
+    **Advanced Mode** — Unlock full control over infill density, layer height, wall thickness, surface finish, post-processing options, and more. Use this mode when your part has specific mechanical or aesthetic requirements.
+
+    All material prices reflect live market rates and are updated regularly. You can see the per-unit price adjust in real time as you change options.
   </Step>
-  <Step title="Place your order">
-    Review the quote and place your order. Track production status, QC results, and delivery — all from the Client Portal.
+  <Step title="Review Your Pricing Breakdown">
+    Before placing an order, Shapelid shows you a full, itemized pricing breakdown so there are no surprises:
+
+    | Line Item | What It Covers |
+    |-----------|---------------|
+    | **Material Cost** | Raw material consumed by your part, calculated from geometry |
+    | **Machine Cost** | Estimated machine time at the rate for the selected technology |
+    | **Setup Fee** | One-time preparation cost per order (bed leveling, fixturing, etc.) |
+    | **Overhead** | Platform and operational costs allocated per order |
+    | **Total** | Sum of all line items, shown with VAT where applicable |
+
+    You can adjust quantity, infill, finish, or material on this screen and watch the total update instantly. If you need multiple quantities, use the quantity selector to see per-unit pricing at volume.
+
+    <Note>
+      For certain complex parts — unusually large geometries, specialized alloys, or multi-step post-processing — the platform may not be able to generate an instant quote. In these cases, you'll see a **Request Manual Quote** button. Fill in your requirements and a Shapelid specialist will respond within one business day.
+    </Note>
+  </Step>
+  <Step title="Place Your Order">
+    When you're satisfied with the quote, click **Place Order**. You'll be prompted to:
+
+    1. Confirm or enter your delivery address
+    2. Select a shipping option (standard or express, where available)
+    3. Complete payment via **PayTR**
+
+    Your payment is held in escrow — it is not released to the manufacturer until your order is accepted and production begins. Once the order is placed, you'll receive a confirmation email and your order will appear in your dashboard with a live status tracker.
   </Step>
 </Steps>
 
+## What Happens Next
+
+After placing your order, a verified manufacturer is assigned to your job. You can track production status in real time from the **Orders** section of your dashboard. Status updates progress through the following stages: **Confirmed → In Production → Quality Check → Shipped → Delivered**.
+
+When your parts are delivered and you confirm receipt, the escrow payment is released to the manufacturer automatically.
+
 <Tip>
-  Need help? Reach out to us at [destek@shapelid.com](mailto:destek@shapelid.com).
+  Have questions about your order, a file issue, or need help choosing the right technology for your part? Reach out to the Shapelid support team at **destek@shapelid.com** — we're here to help.
 </Tip>

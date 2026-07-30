@@ -1,0 +1,101 @@
+---
+title: "Uploading Your CAD File and Getting an Instant Quote"
+sidebarTitle: "Upload & Quote"
+description: "Upload your STL, STEP, or DXF file to Shapelid and get an instant itemised price breakdown covering material, machine time, setup, and overhead."
+---
+
+Shapelid's instant quoting engine analyses your geometry the moment you upload a file, then returns a full cost breakdown — material, machine time, setup, and overhead — in seconds. No emails, no waiting rooms. For the vast majority of parts you can go from raw CAD file to confirmed order in under five minutes.
+
+## Accepted File Formats
+
+| File Format | Supported Technologies | Notes |
+|---|---|---|
+| **STL** | FDM, SLA, SLS, MJF, DMLS, Polyjet | Most common 3D printing format; export at ≤ 0.1 mm chord deviation |
+| **OBJ** | FDM, SLA, SLS, MJF, DMLS, Polyjet | Accepted; STL preferred for cleaner mesh output |
+| **GLTF / GLB** | FDM, SLA, SLS, MJF, DMLS, Polyjet | Useful when colour/texture data is needed for Polyjet review |
+| **STEP (.stp / .step)** | CNC Turning, CNC Milling | Preferred for all CNC work; preserves precise geometry |
+| **IGES (.igs / .iges)** | CNC Turning, CNC Milling | Accepted when STEP is unavailable |
+| **DXF** | Laser Cutting, Bending, EDM | 2D flat patterns only; all cuts on a single layer |
+
+<Note>
+  Maximum upload size is **250 MB**. If your assembly file exceeds this limit, export each body separately and request a multi-part quote — the team will combine them into a single order.
+</Note>
+
+## Upload Flow
+
+<Steps>
+  <Step title="Open the Client Portal">
+    Navigate to [app.shapelid.com](https://app.shapelid.com) and sign in. If you don't have an account yet, registration takes under a minute.
+  </Step>
+  <Step title="Click New Order">
+    From your dashboard, click the **New Order** button in the top-right corner. You'll land on the order configuration page.
+  </Step>
+  <Step title="Upload Your File">
+    Drag your file onto the upload zone or click **Browse** to select it from your file system. Shapelid accepts STL, OBJ, GLTF, STEP, IGES, and DXF files. The file will upload and be parsed immediately — typically within 5–10 seconds for files under 50 MB.
+  </Step>
+  <Step title="Review the 3D Viewer">
+    Once parsing is complete, the Three.js-powered 3D viewer renders your part. Rotate, zoom, and inspect the geometry to confirm the file loaded correctly before proceeding.
+  </Step>
+  <Step title="Select a Technology">
+    Choose your manufacturing technology from the dropdown — FDM, SLA, SLS, MJF, DMLS, Polyjet, CNC Turning, CNC Milling, EDM, Laser Cutting, or Bending. The available material and finish options will update to match your selection.
+  </Step>
+  <Step title="Choose a Material and Options">
+    Pick a material in Simple or Advanced Mode (see below), then configure finish, colour, resolution, and tolerance as available for your chosen technology. The instant quote refreshes in real time as you adjust options.
+  </Step>
+  <Step title="Add to Cart and Confirm">
+    Review the price breakdown, set your quantity, and click **Add to Cart**. Proceed to checkout to confirm your order.
+  </Step>
+</Steps>
+
+## The 3D Viewer
+
+After your file is processed, a real-time 3D viewer renders your part using Three.js directly in the browser — no plugins required. You can:
+
+- **Orbit** the part by clicking and dragging
+- **Zoom** with the scroll wheel or pinch gesture on touch screens
+- **Pan** by holding Shift and dragging
+- **Inspect thin walls and overhangs** — the viewer highlights geometry that may require support structures or that could affect pricing
+
+The viewer also reports bounding box dimensions and volume, letting you verify that your export is in the correct unit system before committing to an order.
+
+## Simple Mode vs. Advanced Mode
+
+Shapelid's material selector has two modes designed to reduce decision fatigue without hiding options from experienced engineers.
+
+**Simple Mode** (default) shows 17 carefully curated materials — the most popular option for each technology, such as PLA for FDM, PA12 for SLS, and Aluminium 6061 for CNC Milling. If you're new to on-demand manufacturing or just need a quick quote for a standard part, Simple Mode is all you need.
+
+**Advanced Mode** unlocks the full catalogue of 135+ materials, including exotic alloys, high-performance polymers, and engineering-grade composites. To enable it, toggle the **Advanced Mode** switch at the top of the material panel. Your selection is remembered per order.
+
+## Instant Price Breakdown
+
+Every instant quote is broken down into four cost components so you can see exactly what you're paying for:
+
+| Line Item | What It Covers |
+|---|---|
+| **Material Cost** | Raw material volume × live market price per cm³ |
+| **Machine Cost** | Estimated print or machining time × machine hourly rate |
+| **Setup Cost** | Fixed per-order cost for preparation, bed levelling, tooling changes |
+| **Overhead** | Facility, energy, quality-check, and platform margin |
+| **Subtotal** | Sum of the above before VAT |
+
+Prices update in real time as you change quantity, material, or finish. All amounts shown are exclusive of VAT unless your account is configured for VAT-inclusive display.
+
+### Quantity Discounts
+
+Shapelid applies tiered volume discounts automatically. Higher quantities reduce the per-unit machine and setup cost as fixed costs are amortised across more parts. The per-unit price shown in the quantity field updates dynamically — increase the quantity to see the new per-unit rate before you add to cart.
+
+<Note>
+  **When instant pricing switches to a Manual Quote:** Some part configurations cannot be priced automatically. The system will prompt you to request a manual quote if any of the following apply — high quantities above the technology threshold, geometric complexity (thin walls under 0.8 mm, deep internal channels), volume that exceeds the build envelope, required certifications (ISO, AS9100, etc.), multi-part assemblies, non-standard material requests, or a technology-material combination that isn't directly compatible. See [Manual Quote](/ordering/manual-quote) for more detail.
+</Note>
+
+## File Preparation Best Practices
+
+<Tip>
+  Follow these guidelines before uploading to avoid failed analyses and unexpected repricing:
+
+  - **Watertight mesh:** For 3D printing formats (STL/OBJ/GLTF), ensure the mesh has no open edges, non-manifold geometry, or inverted normals. Tools like Meshmixer, Netfabb, or PrusaSlicer's repair function can fix common issues automatically.
+  - **Correct units:** Export in **millimetres**. Shapelid's engine assumes mm; a file exported in inches will be interpreted as 25.4× too large.
+  - **Single-body exports:** Submit one body per file unless you're requesting a multi-part assembly quote.
+  - **Flat DXF layers:** For Laser Cutting, Bending, and EDM files, place all cut geometry on a single DXF layer with no dimensions, annotations, or hatching. Arcs and lines only — no splines unless your DXF is R2010 or later.
+  - **STEP over IGES for CNC:** When both formats are available, STEP preserves feature history and tolerances more reliably. Always use STEP AP214 or AP242.
+</Tip>

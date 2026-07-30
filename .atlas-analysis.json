@@ -1,0 +1,127 @@
+{
+  "projectType": "saas",
+  "projectName": "Shapelid",
+  "projectDescription": "A no-code AI platform for building full-stack apps, websites, and AI agents using plain natural language.",
+  "theme": "almond",
+  "primaryColor": "#ef7025",
+  "lightColor": "#eec9bc",
+  "darkColor": "#4fa1ab",
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Help Center",
+        "groups": [
+          {
+            "group": "Getting Started",
+            "pages": [
+              "introduction",
+              "quickstart",
+              "getting-started/building-an-app",
+              "getting-started/building-a-website",
+              "getting-started/first-prompt",
+              "getting-started/templates"
+            ]
+          },
+          {
+            "group": "Building Your App",
+            "pages": [
+              "building/ai-chat",
+              "building/prompt-tips",
+              "building/design",
+              "building/pages-and-layout",
+              "building/managing-data",
+              "building/logic-and-workflows"
+            ]
+          },
+          {
+            "group": "Setup & Security",
+            "pages": [
+              "setup/authentication",
+              "setup/custom-domains",
+              "setup/access-and-roles",
+              "setup/security-overview",
+              "setup/sso"
+            ]
+          },
+          {
+            "group": "Integrations",
+            "pages": [
+              "integrations/overview",
+              "integrations/payments",
+              "integrations/email",
+              "integrations/third-party"
+            ]
+          },
+          {
+            "group": "Growth & Analytics",
+            "pages": [
+              "growth/analytics",
+              "growth/seo",
+              "growth/mobile-and-app-stores"
+            ]
+          },
+          {
+            "group": "Account & Billing",
+            "pages": [
+              "account/plans-and-billing",
+              "account/credits",
+              "account/team-and-collaboration"
+            ]
+          },
+          {
+            "group": "Support",
+            "pages": [
+              "support/faq",
+              "support/troubleshooting",
+              "support/contact"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Developer Docs",
+        "groups": [
+          {
+            "group": "Developer Tools",
+            "pages": [
+              "developer/overview",
+              "developer/sdk",
+              "developer/cli",
+              "developer/api-reference",
+              "developer/custom-integrations"
+            ]
+          },
+          {
+            "group": "Advanced",
+            "pages": [
+              "developer/superagents",
+              "developer/mcp-server",
+              "developer/github-integration"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "keyFeatures": [
+    "AI-powered app builder using natural language",
+    "Built-in database, authentication, and hosting",
+    "Visual design editor with instant styling",
+    "Superagents for background automation",
+    "One-click payment integrations (Stripe)",
+    "Custom domain management",
+    "SEO & GEO optimization dashboard",
+    "GitHub two-way sync",
+    "Real-time collaboration and version control",
+    "6000+ integrations via Zapier and native connectors"
+  ],
+  "publicApiSurface": [
+    "Auto-generated REST API for all app data",
+    "SDK for custom code integrations",
+    "CLI for local development",
+    "MCP Server for AI agent connectivity",
+    "Webhook support for external triggers",
+    "Zapier integration (6000+ apps)",
+    "Custom integrations endpoint"
+  ]
+}

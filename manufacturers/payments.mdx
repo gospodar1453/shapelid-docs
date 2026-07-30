@@ -1,0 +1,84 @@
+---
+title: "Payments and Earnings on Shapelid"
+sidebarTitle: "Payments"
+description: "Understand how Shapelid's marketplace payment model works — including commissions, escrow release, and how to view your earnings dashboard."
+---
+
+Shapelid operates as the Merchant of Record for every transaction on the platform. This means customers pay Shapelid directly when they place an order, and Shapelid disburses your net earnings to you after the job is completed and approved. This structure protects you from payment collection risk, guarantees payment on approved orders, and keeps your administrative overhead low. Here is a full breakdown of how the model works.
+
+## The Merchant of Record Model
+
+When a customer places an order on Shapelid, they pay the full order value to Shapelid — not directly to you. Shapelid holds those funds in escrow until the order is completed and the customer approves the quality of the delivered parts.
+
+As the manufacturer, you are not involved in charging the customer or issuing invoices to them. Your relationship is with Shapelid: you fulfil the order, Shapelid verifies completion, and Shapelid pays you. This model means:
+
+- You never need to chase customers for payment
+- Your earnings are guaranteed once the job is approved
+- Shapelid handles all customer-facing billing, VAT, and refund processes
+
+## Commission Structure
+
+Shapelid deducts a platform commission from each order before paying you. The commission is dynamic and ranges from **18% to 35%** of the gross order value, calculated as follows:
+
+| Factor | Effect on Commission |
+|---|---|
+| **Order value** | Higher-value orders attract lower commission rates |
+| **Technology** | Standard FDM and 3-axis CNC carry different base rates than specialised processes |
+| **Repeat customer** | Orders from customers you have previously served carry a reduced commission |
+| **Platform tier** | As your completed-job count grows, you advance to higher partner tiers with lower commission rates |
+
+Your exact commission rate for each job is displayed on the job card before you accept it, so you always know your net payout in advance. There are no hidden fees or additional deductions beyond the stated commission.
+
+## Escrow and Payment Release
+
+Funds are held in escrow from the moment the customer pays until the order is fully resolved. The escrow releases automatically when:
+
+1. You mark the job **Ready to Ship** in the Kanban board (QC complete)
+2. The customer receives the parts and confirms approval — or the automatic approval window closes (typically 5 business days after confirmed delivery with no dispute raised)
+
+Once escrow releases, the net amount appears in your **Pending Payouts** balance in the portal. Payouts are processed in batches — twice weekly by default — and transferred directly to your registered bank account.
+
+If a customer raises a dispute before approval, the escrow is paused while Shapelid's team reviews the case. You will be notified immediately and given the opportunity to provide your QC documentation and photos as evidence.
+
+## Payment Timeline
+
+Here is a typical timeline from job acceptance to money in your account:
+
+| Milestone | Typical Timing |
+|---|---|
+| Job accepted | Day 0 |
+| Production and shipping complete | Varies by job |
+| Customer approval / auto-approval | Up to 5 business days after delivery |
+| Escrow released to Pending Payouts | Same day as approval |
+| Payout transferred to bank account | Within 2 business days of next batch run |
+
+You can track exactly where any given payment is in this cycle from your **Earnings Dashboard**.
+
+## Earnings Dashboard
+
+Navigate to **Finances → Earnings** in the Partner Portal to access your financial overview.
+
+The dashboard shows:
+
+- **Pending Payouts** — earnings that have cleared escrow but not yet been transferred
+- **In Escrow** — earnings from active jobs still awaiting customer approval
+- **Paid Out** — full history of completed transfers with dates and amounts
+- **Commission History** — per-job breakdown of gross value, commission rate, and your net
+- **Projected Earnings** — estimated payouts from your currently active jobs
+
+You can export any section of the earnings dashboard as a CSV file for your own accounting records.
+
+## Setting Up Your Bank Account
+
+Before you can receive payouts, you must add your bank account details in the Partner Portal.
+
+1. Navigate to **Settings → Payout Account**
+2. Enter your IBAN, account holder name, and the name of your bank
+3. Click **Save and Verify** — Shapelid will make a small test deposit (typically ₺1) within one business day to confirm the account details are correct
+4. Once the test deposit is confirmed, your account is active and payouts will process automatically
+
+Keep your bank account information up to date. If a payout fails due to incorrect account details, the funds are returned to your Pending Payouts balance and you will receive an email notification to correct the information.
+
+<Note>
+  Electronic invoice (e-Fatura) generation via Nilvera is coming soon. Once live, the Partner Portal will automatically generate a compliant e-Fatura for each completed order and submit it to the Revenue Administration (GİB) on your behalf. You will be notified when this feature is available for your account.
+</Note>
