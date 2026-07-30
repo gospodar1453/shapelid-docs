@@ -1,0 +1,41 @@
+---
+title: "Platform Overview"
+description: "Architecture and components of the Shapelid manufacturing platform"
+---
+
+Shapelid consists of three interconnected applications and a kernel pricing engine.
+
+## Architecture
+
+| Component | URL | Stack |
+|-----------|-----|-------|
+| Client Portal | app.shapelid.com | Base44 + Three.js |
+| Partner Portal | partner.shapelid.com | Base44 |
+| Marketing Site | shapelid.com | Wix |
+| Kernel API | shapelid-kernel-production.up.railway.app | FastAPI + Trimesh + NumPy |
+
+## Revenue Model
+
+Shapelid operates on a **Manufacturer of Record (MoR)** model:
+
+- Customer pays the full price through PayTR
+- Shapelid takes a dynamic commission (18-35%)
+- Manufacturer receives the net amount after escrow release
+
+## Supported Technologies
+
+<Table>
+  | Technology | Code | Analysis Type |
+  |------------|------|---------------|
+  | FDM | fdm | STL volume/surface (Trimesh) |
+  | SLA | sla | STL volume + support analysis |
+  | SLS | sls | STL volume + nesting optimization |
+  | MJF | mjf | STL volume + nesting optimization |
+  | DMLS | dmls | STL volume + support analysis |
+  | Polyjet | polyjet | STL volume |
+  | CNC Turning | cnc_turning | STEP/IGES (OCCT) |
+  | CNC Milling | cnc_milling | STEP/IGES (OCCT) |
+  | EDM Services | edm | DXF 2D analysis |
+  | Laser Cutting | laser_cutting | DXF 2D analysis |
+  | Bending | bending | DXF 2D analysis |
+</Table>

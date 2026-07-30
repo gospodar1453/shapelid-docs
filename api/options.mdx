@@ -1,0 +1,26 @@
+---
+title: "GET /options"
+description: "Get valid options for a specific technology"
+---
+
+## Request
+
+```bash
+curl https://shapelid-kernel-production.up.railway.app/options?technology=fdm
+```
+
+## Response
+
+```json
+{
+  "technology": "fdm",
+  "materials": ["fdm_pla", "fdm_abs", "fdm_petg", "fdm_tpu_soft", ...],
+  "finishes": ["as_printed", "vapor_smoothing", "sanding", "priming"],
+  "colors": ["white", "black", "red", "blue", "green", "yellow", "gray"],
+  "resolutions": ["draft", "standard", "fine"],
+  "tolerances": ["standard", "medium", "fine"],
+  "certifications": ["none", "iso9001"]
+}
+```
+
+Options are technology-dependent. For example, DMLS supports `fine` and `ultra` tolerances but not `draft` resolution.

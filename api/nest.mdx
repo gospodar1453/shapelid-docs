@@ -1,0 +1,35 @@
+---
+title: "POST /nest"
+description: "Nesting optimization for SLS/MJF batch pricing"
+---
+
+## Request
+
+```bash
+curl -X POST https://shapelid-kernel-production.up.railway.app/nest \
+  -F "files=@part1.stl" \
+  -F "files=@part2.stl" \
+  -F "technology=sls" \
+  -F "material=sls_pa12" \
+  -F "quantity=10"
+```
+
+## Response
+
+```json
+{
+  "technology": "sls",
+  "build_volume_used_pct": 68.5,
+  "material_savings_pct": 22.0,
+  "total_parts_fit": 10,
+  "builds_required": 1,
+  "breakdown": {
+    "material_cost": 15.30,
+    "machine_cost": 28.00,
+    "setup_cost": 5.00,
+    "overhead": 4.20
+  },
+  "total_price": 72.64,
+  "unit_price": 7.26
+}
+```

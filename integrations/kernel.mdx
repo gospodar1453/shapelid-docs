@@ -1,0 +1,40 @@
+---
+title: "Kernel API"
+description: "Pricing and geometric analysis service"
+---
+
+The Shapelid Kernel is a FastAPI service deployed on Railway.
+
+## Base URL
+
+```
+https://shapelid-kernel-production.up.railway.app
+```
+
+## Version
+
+Current: **v3.1.0** (Faz-6 Nesting Optimizasyonu)
+
+## Endpoints
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/analyze` | POST | Analyze CAD file and return pricing |
+| `/options` | GET | Get valid options for a technology |
+| `/nest` | POST | Nesting optimization (SLS/MJF) |
+| `/nest-price` | POST | Nested batch pricing |
+| `/calibrate` | POST | Submit calibration data |
+| `/calibration-demo` | GET | Demo calibration factors |
+
+## Tech Stack
+
+- FastAPI + Uvicorn
+- Trimesh (STL/OBJ geometric analysis)
+- NumPy (numerical computation)
+- ezdxf (DXF 2D analysis)
+- python-multipart (file upload)
+- Railway deployment with Docker
+
+## Source
+
+GitHub: `gospodar1453/shapelid-kernel` (synced via `git push github main`)

@@ -1,0 +1,59 @@
+---
+title: "Pricing Engine"
+description: "Kernel service for geometric analysis and cost calculation"
+---
+
+The Shapelid Kernel is a FastAPI service running on Railway that performs geometric analysis and calculates manufacturing costs.
+
+## Base URL
+
+```
+https://shapelid-kernel-production.up.railway.app
+```
+
+## Pricing Formula
+
+```
+final_price = (base × ∏multipliers + flat_costs) / (1 - margin)
+```
+
+### Cost Components
+
+- **Material Cost** — Base material price × volume × waste factor
+- **Machine Cost** — Hourly rate × print/machine time
+- **Setup Cost** — Fixed cost per job (technology-dependent)
+- **Overhead** — Labor, energy, facility share
+- **Margin** — 28% default (MoR model)
+
+### Material Multipliers
+
+Each material has dynamic multipliers managed in `pricing/material_multipliers.py`:
+
+| Parameter | Description | Example |
+|-----------|-------------|---------|
+| speed_mult | Print/machine speed multiplier | TPU Soft: 1.5x |
+| setup_cost | Additional setup cost | Composites: $1.50 |
+| waste_pct | Material waste percentage | Composites: 15% |
+
+## Manual Quote Triggers
+
+8 categories that switch pricing to RFQ mode:
+
+1. High quantity threshold (technology-dependent)
+2. Technology-material incompatibility
+3. High overhang ratio (SLA/DMLS)
+4. Geometric complexity (thin walls, complex internal channels)
+5. Volume exceeds build envelope
+6. Custom certification required
+7. Multi-part assembly
+8. Non-standard material request
+
+## Live Material Pricing
+
+The kernel fetches live prices from the MaterialPrice entity via a backend function:
+
+- **Metals** — metals.dev API (Al, Cu, Ni, Zn, Pb)
+- **Steel** — Yahoo Finance HRC=F index
+- **Plastics** — Yahoo Finance BZ=F (Brent proxy) with material-based multipliers
+- **Titanium** — Manual override (LME unavailable)
+- **Exchange Rate** — TCMB ForexBuying with 4% buffer
